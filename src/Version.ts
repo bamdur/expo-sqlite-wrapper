@@ -34,7 +34,7 @@ async function dropVersionTable(connection: Connection) {
 
 async function updateVersion(newVersion: number, connection: Connection): Promise<void> {
   const version: VersionRow = { id: 1, version: newVersion }
-  await connection.repository.insert<VersionRow>(version, tableName);
+  await connection.repository.insertOrReplace<VersionRow>(version, tableName);
 }
 
 async function getLatestVersion(connection: Connection): Promise<number> {
